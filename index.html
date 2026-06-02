@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Возвращение к себе · 8 недель с Алиной Юркиной</title>
+
+<!-- Шрифты UI Kit: Playfair Display (дисплей) + Marck Script (рукописный акцент) + Manrope (body). Все с кириллицей. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Marck+Script&family=Manrope:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Font Awesome для иконок-форматов (заменяемые плейсхолдеры) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* Пользовательский дисплейный шрифт для заголовка обложки */
+@font-face{
+  font-family:'Ekaterina Velikaya One';
+  src:url('assets/ekaterinavelikayaone.ttf') format('truetype');
+  font-weight:400;font-style:normal;font-display:swap;
+}
+/* ============================================================
+   :ROOT — ТОКЕНЫ ДИЗАЙН-СИСТЕМЫ (скопированы из UI Kit без изменений)
+   ============================================================ */
+:root{
+  /* ФОН / БАЗА */
+  --ink-900:#0E0809; --ink-800:#15100F; --ink-700:#1E1718; --ink-600:#2A2122;
+  /* ВИНО / БОРДО */
+  --wine-900:#2A0A11; --wine-700:#5A101C; --wine-500:#7C1A2B; --wine-400:#9A2740; --rose-400:#B8455E;
+  /* ЗОЛОТО */
+  --gold-700:#9C7A33; --gold-500:#C7A14E; --gold-300:#E3C988; --gold-100:#F3E4C0;
+  /* КРЕМ / СВЕТ */
+  --cream-50:#FBF6EC; --cream-100:#F4EBD9; --cream-200:#E9DCC4; --paper-ink:#241A14;
+  /* НЕЙТРАЛЬНЫЕ */
+  --neutral-100:#CFC4BC; --neutral-300:#9A8E88; --neutral-500:#6B615D;
+  /* СОСТОЯНИЯ */
+  --success:#6F8F5E; --success-bg:#1B2417; --warning:#C9912F; --warning-bg:#2A2010;
+  --error:#C24A4A; --error-bg:#2A1314; --info:#6E8AA6; --info-bg:#15202A;
+  /* ТИПОГРАФИКА */
+  --font-display:'Playfair Display', Georgia, serif;
+  --font-script:'Marck Script', cursive;
+  --font-body:'Manrope', system-ui, sans-serif;
+  --fs-display:clamp(3.5rem, 9vw, 7rem);
+  --fs-h1:clamp(2.6rem, 6vw, 4.5rem);
+  --fs-h2:clamp(2rem, 4vw, 3rem);
+  --fs-h3:clamp(1.5rem, 2.5vw, 2rem);
+  --fs-h4:clamp(1.25rem, 2vw, 1.5rem);
+  --fs-lead:1.25rem; --fs-body:1.0625rem; --fs-small:0.875rem; --fs-tiny:0.75rem;
+  --lh-tight:1.05; --lh-heading:1.15; --lh-body:1.65;
+  --tracking-display:-0.02em; --tracking-overline:0.28em; --tracking-body:0.005em;
+  /* РАДИУСЫ */
+  --radius-sm:8px; --radius-md:16px; --radius-lg:24px; --radius-pill:999px;
+  /* ТЕНИ */
+  --shadow-sm:0 2px 8px rgba(20,8,10,.35);
+  --shadow-md:0 12px 32px rgba(20,8,10,.45);
+  --shadow-lg:0 28px 64px rgba(20,8,10,.55);
+  --shadow-gold:0 8px 28px rgba(199,161,78,.28);
+  --shadow-inset:inset 0 1px 0 rgba(243,228,192,.12);
+  /* ГРАДИЕНТЫ */
+  --grad-wine:linear-gradient(135deg, var(--wine-700) 0%, var(--wine-900) 100%);
+  --grad-gold:linear-gradient(135deg, var(--gold-300) 0%, var(--gold-500) 45%, var(--gold-700) 100%);
+  --grad-stage:radial-gradient(120% 90% at 50% 0%, #221314 0%, var(--ink-900) 60%);
+  --grad-glass:linear-gradient(135deg, rgba(244,235,217,.10), rgba(244,235,217,.02));
+  --grad-line:linear-gradient(90deg, transparent, var(--gold-500), transparent);
+  /* СТЕКЛО */
+  --glass-blur:blur(14px); --glass-bg:rgba(30,23,24,.55); --glass-border:1px solid rgba(243,228,192,.18);
+  /* ДВИЖЕНИЕ */
+  --ease-soft:cubic-bezier(.22,.61,.36,1); --ease-snap:cubic-bezier(.34,1.56,.64,1);
+  --t-fast:.18s; --t-base:.32s; --t-slow:.6s;
+  /* СЕТКА */
+  --space:1rem; --container:1180px;
+}
+
+/* ===================== СБРОС И БАЗА (из UI Kit) ===================== */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body); font-size:var(--fs-body); line-height:var(--lh-body);
+  letter-spacing:var(--tracking-body); color:var(--cream-50); background:var(--ink-900);
+  background-image:
+    var(--grad-stage),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-attachment:fixed; -webkit-font-smoothing:antialiased;
+}
+
+/* ===================== ТИПОГРАФИКА: классы из UI Kit ===================== */
+.t-display{font-family:var(--font-display);font-weight:800;font-size:var(--fs-display);line-height:var(--lh-tight);letter-spacing:var(--tracking-display)}
+.t-h1{font-family:var(--font-display);font-weight:700;font-size:var(--fs-h1);line-height:var(--lh-tight);letter-spacing:var(--tracking-display)}
+.t-h2{font-family:var(--font-display);font-weight:600;font-size:var(--fs-h2);line-height:var(--lh-heading)}
+.t-h3{font-family:var(--font-display);font-weight:500;font-size:var(--fs-h3);line-height:var(--lh-heading)}
+.t-h4{font-family:var(--font-body);font-weight:700;font-size:var(--fs-h4);line-height:var(--lh-heading)}
+.t-script{font-family:var(--font-script);font-size:var(--fs-h2);color:var(--gold-300)}
+.t-body{font-family:var(--font-body);font-weight:400;font-size:var(--fs-body);line-height:var(--lh-body);color:var(--neutral-100);max-width:620px}
+.t-overline{font-family:var(--font-body);font-weight:600;font-size:var(--fs-tiny);text-transform:uppercase;letter-spacing:var(--tracking-overline);color:var(--gold-500)}
+
+/* ===================== КНОПКИ: классы из UI Kit ===================== */
+.btn{
+  font-family:var(--font-body);font-weight:600;font-size:var(--fs-body);
+  padding:15px 32px;border-radius:var(--radius-pill);
+  border:1.5px solid transparent;cursor:pointer;
+  display:inline-flex;align-items:center;gap:10px;
+  transition:transform var(--t-fast) var(--ease-snap), background var(--t-base), box-shadow var(--t-base), color var(--t-base), border-color var(--t-base);
+  letter-spacing:.01em;text-decoration:none;
+}
+.btn:active{transform:translateY(1px) scale(.99)}
+.btn-primary{background:var(--wine-500);color:var(--gold-300);box-shadow:var(--shadow-sm)}
+.btn-primary:hover{background:var(--wine-400);box-shadow:var(--shadow-gold);transform:translateY(-2px)}
+.btn-primary:active{background:var(--wine-700);box-shadow:var(--shadow-sm)}
+.btn-secondary{background:var(--grad-gold);color:var(--wine-900);box-shadow:var(--shadow-sm)}
+.btn-secondary:hover{filter:brightness(1.06);box-shadow:var(--shadow-gold);transform:translateY(-2px)}
+.btn-secondary:active{filter:brightness(.94);transform:translateY(0)}
+.btn-outline{background:transparent;color:var(--gold-300);border-color:var(--gold-500)}
+.btn-outline:hover{background:rgba(199,161,78,.10);border-color:var(--gold-300);color:var(--gold-100);transform:translateY(-2px)}
+.btn-outline:active{background:rgba(199,161,78,.18)}
+.btn-ghost{background:transparent;color:var(--neutral-100);padding-left:18px;padding-right:18px}
+.btn-ghost:hover{color:var(--gold-300);background:rgba(243,228,192,.05)}
+.btn-ghost:active{background:rgba(243,228,192,.10)}
+
+/* ===================== КАРТОЧКИ: классы из UI Kit ===================== */
+.card{
+  background:var(--ink-700);border:1px solid var(--ink-600);border-radius:var(--radius-lg);
+  padding:28px;box-shadow:var(--shadow-sm);
+  transition:transform var(--t-base) var(--ease-soft), box-shadow var(--t-base), border-color var(--t-base);
+}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--gold-700)}
+.card h4{font-family:var(--font-display);font-weight:600;font-size:var(--fs-h4);color:var(--cream-50);margin-bottom:10px}
+.card p{color:var(--neutral-300);font-size:var(--fs-small)}
+.card .badge{display:inline-block;font-size:var(--fs-tiny);font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--gold-500);margin-bottom:14px}
+.card-glass{
+  background:var(--glass-bg);-webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
+  border:var(--glass-border);box-shadow:var(--shadow-md), var(--shadow-inset);
+}
+.card-glass .big-num{font-family:var(--font-display);font-weight:800;font-size:3.2rem;color:var(--cream-50);line-height:1}
+.card-price{
+  position:relative;color:var(--paper-ink);border-radius:var(--radius-lg);padding:32px 28px;
+  background:linear-gradient(var(--cream-100),var(--cream-100)) padding-box, var(--grad-gold) border-box;
+  border:2px solid transparent;box-shadow:var(--shadow-md);
+  transition:transform var(--t-base) var(--ease-soft), box-shadow var(--t-base);
+}
+.card-price:hover{transform:translateY(-6px) scale(1.01);box-shadow:var(--shadow-lg),var(--shadow-gold)}
+.card-price .tier{font-family:var(--font-display);font-style:italic;font-size:var(--fs-h4);color:var(--wine-700)}
+.card-price .price{font-family:var(--font-display);font-weight:800;font-size:3rem;color:var(--wine-700);line-height:1.1;margin:6px 0}
+.card-price .price small{font-size:1rem;font-weight:500;color:var(--neutral-500)}
+.card-price ul{list-style:none;margin:18px 0 24px}
+.card-price li{padding:8px 0;border-bottom:1px solid var(--cream-200);font-size:var(--fs-small);display:flex;gap:10px}
+.card-price li::before{content:"✦";color:var(--gold-700)}
+.card-price .ribbon{
+  position:absolute;top:18px;right:-2px;background:var(--wine-500);color:var(--gold-300);
+  font-size:var(--fs-tiny);font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  padding:6px 16px;border-radius:var(--radius-pill) 0 0 var(--radius-pill);
+}
+.card-review{
+  background:var(--ink-700);border:1px solid var(--ink-600);border-radius:var(--radius-lg);
+  padding:30px 28px;position:relative;overflow:hidden;box-shadow:var(--shadow-sm);
+  transition:transform var(--t-base) var(--ease-soft), box-shadow var(--t-base);
+}
+.card-review:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.card-review::before{content:"\201C";font-family:var(--font-display);position:absolute;top:-18px;left:20px;font-size:8rem;color:var(--wine-500);opacity:.35}
+.card-review .quote{font-family:var(--font-display);font-style:italic;font-size:var(--fs-lead);color:var(--cream-50);line-height:1.4;position:relative;z-index:1;margin-bottom:22px}
+.card-review .who{display:flex;align-items:center;gap:14px}
+.card-review .avatar{width:48px;height:48px;border-radius:50%;background:var(--grad-wine);border:2px solid var(--gold-500)}
+.card-review .who b{display:block;color:var(--cream-50);font-size:var(--fs-small)}
+.card-review .who span{color:var(--neutral-300);font-size:var(--fs-tiny)}
+.stars{color:var(--gold-500);font-size:var(--fs-small);letter-spacing:.15em;margin-bottom:14px}
+
+/* ===================== ПОЛЯ ВВОДА: классы из UI Kit ===================== */
+.field{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+.field label{font-size:var(--fs-small);font-weight:600;color:var(--cream-100)}
+.field .hint{font-size:var(--fs-tiny);color:var(--neutral-500)}
+.input,.textarea{
+  font-family:var(--font-body);font-size:var(--fs-body);color:var(--cream-50);
+  background:var(--ink-800);border:1.5px solid var(--ink-600);border-radius:var(--radius-sm);
+  padding:14px 16px;transition:border-color var(--t-base), box-shadow var(--t-base), background var(--t-base);width:100%;
+}
+.input::placeholder,.textarea::placeholder{color:var(--neutral-500)}
+.input:focus,.textarea:focus{outline:none;border-color:var(--gold-500);background:var(--ink-700);box-shadow:0 0 0 3px rgba(199,161,78,.16)}
+
+/* ===================== ДЕКОР: классы из UI Kit ===================== */
+.divider{display:flex;align-items:center;justify-content:center;gap:18px;margin:48px 0}
+.divider .line{height:1px;flex:1;max-width:240px;background:var(--grad-line)}
+.divider .seal{width:14px;height:14px;border-radius:50%;background:var(--grad-gold);box-shadow:0 0 0 4px rgba(199,161,78,.15), var(--shadow-gold)}
+.line-ornament{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--gold-500)}
+.line-ornament::before,.line-ornament::after{content:"";height:1px;flex:1;background:var(--grad-line)}
+.line-ornament span{font-family:var(--font-display);font-style:italic;font-size:var(--fs-small);white-space:nowrap}
+
+/* ===================== АНИМАЦИИ: классы из UI Kit ===================== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.anim-fadeup{animation:fadeUp var(--t-slow) var(--ease-soft) both}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+.anim-shimmer{background:linear-gradient(110deg, var(--gold-700) 25%, var(--gold-300) 50%, var(--gold-700) 75%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 3.5s linear infinite;font-family:var(--font-display);font-weight:700}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 0 0 rgba(199,161,78,.0)}50%{box-shadow:var(--shadow-gold)}}
+.anim-pulse{animation:pulseGlow 2.4s var(--ease-soft) infinite}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto}
+  /* Контент обложки стартует с opacity:0 и проявляется ТОЛЬКО анимацией.
+     При reduce анимации отключены — принудительно делаем элементы видимыми. */
+  .lp-cover [data-enter]{opacity:1!important;transform:none!important}
+}
+
+/* ============================================================
+   LANDING LAYOUT — надстройка над UI Kit.
+   Только структура/сетка; ни один класс кита здесь не переопределяется.
+   ============================================================ */
+
+/* Контейнер контента: центр, max-width 1280px (по ТЗ) */
+.lp-container{max-width:1280px;margin:0 auto;padding:0 24px;width:100%}
+
+/* Секция: 48px отступы на мобиле (Mobile First), 80px — на десктопе ниже */
+.lp-section{padding:48px 0}
+
+/* Шапка-навигация — flex, sticky, стекло */
+.lp-nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(14,8,9,.72);-webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
+  border-bottom:1px solid var(--ink-600);
+}
+.lp-nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 24px;max-width:1280px;margin:0 auto}
+.lp-brand{font-family:var(--font-display);font-weight:700;font-size:var(--fs-h4);color:var(--cream-50);text-decoration:none;letter-spacing:.01em}
+.lp-brand span{font-family:'Ekaterina Velikaya One', var(--font-script);color:var(--gold-300);font-weight:400}
+.lp-nav-links{display:none;gap:28px;align-items:center}
+.lp-nav-links a{color:var(--neutral-100);text-decoration:none;font-size:var(--fs-small);font-weight:500;transition:color var(--t-fast)}
+.lp-nav-links a:hover{color:var(--gold-300)}
+
+/* ============ ОБЛОЖКА — CINEMATIC cover в стиле референса ============ */
+.lp-cover{position:relative;min-height:calc(100svh - 62px);min-height:calc(100vh - 62px);display:flex;overflow:hidden;background:var(--ink-900)}
+/* Фото на весь экран */
+.lp-cover-media{position:absolute;inset:0;z-index:0}
+.lp-cover-media img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;display:block;will-change:transform;transform:scale(1.14)}
+/* Затемнение: сверху — для верхнего текста, снизу — под титул (читабельность) */
+.lp-cover-veil{position:absolute;inset:0;background:
+  linear-gradient(180deg, rgba(14,8,9,.55) 0%, rgba(14,8,9,.05) 20%, rgba(14,8,9,.10) 50%, rgba(14,8,9,.78) 84%, rgba(14,8,9,.97) 100%),
+  radial-gradient(120% 70% at 50% 118%, rgba(42,10,17,.55), transparent 60%)}
+/* Тонкая золотая рамка-инсет */
+.lp-cover-frame{
+  position:relative;z-index:2;flex:1;margin:14px;
+  /* Двойная золотая рамка с лёгким свечением */
+  border:1.5px solid rgba(227,201,136,.75);
+  outline:1px solid rgba(199,161,78,.35);outline-offset:7px;
+  border-radius:3px;
+  box-shadow:0 0 28px rgba(199,161,78,.22), inset 0 0 36px rgba(199,161,78,.10);
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px);
+}
+/* Декоративные уголки-скобки (квадратичная кривая) + блики-искры */
+.lp-corner{position:absolute;width:clamp(38px,6vw,70px);height:clamp(38px,6vw,70px);pointer-events:none;
+  background-repeat:no-repeat;background-size:contain;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='70' fill='none' stroke='%23C7A14E' stroke-width='1.2'%3E%3Cpath d='M3 67 Q3 3 67 3'/%3E%3C/svg%3E")}
+.lp-corner.tl{top:-1px;left:-1px}
+.lp-corner.tr{top:-1px;right:-1px;transform:scaleX(-1)}
+.lp-corner.bl{bottom:-1px;left:-1px;transform:scaleY(-1)}
+.lp-corner.br{bottom:-1px;right:-1px;transform:scale(-1,-1)}
+.lp-spark{position:absolute;color:var(--gold-300);font-size:clamp(10px,1.4vw,15px);opacity:.85;pointer-events:none;text-shadow:0 0 8px rgba(199,161,78,.5)}
+
+/* Верхний блок: «8 недель · Поток …» как Location/Date в референсе */
+.lp-cover-top{text-align:center;font-family:var(--font-body);text-transform:uppercase;
+  font-size:var(--fs-small);letter-spacing:.22em;color:var(--cream-100);line-height:1}
+.lp-cover-top b{color:var(--gold-300);font-weight:600}
+
+/* Нижний блок: подводка-фраза + гигантский титул + скрипт + CTA */
+.lp-cover-bottom{display:flex;flex-direction:column;align-items:center;text-align:center;gap:0;margin-bottom:clamp(14px,5vh,52px)}
+.lp-cover-eyebrow{font-family:var(--font-body);font-weight:600;font-size:var(--fs-tiny);
+  text-transform:uppercase;letter-spacing:var(--tracking-overline);color:var(--gold-500);margin-bottom:18px}
+/* Подводка = реальный заголовок (H1), редакционный италик */
+.lp-cover-kicker{max-width:760px;margin:0 auto 6px;font-family:var(--font-display);font-style:italic;
+  font-weight:500;font-size:clamp(1.05rem,2.3vw,1.65rem);line-height:1.4;color:var(--cream-50);
+  text-shadow:0 2px 16px rgba(0,0,0,.6)}
+/* Связка титула и скрипта */
+.lp-cover-title{position:relative;width:100%;margin:0 0 20px;order:1}
+.lp-cover-bigword{display:block;font-family:'Ekaterina Velikaya One', var(--font-display);font-weight:400;white-space:nowrap;
+  font-size:clamp(2.6rem,12vw,8.5rem);line-height:1.15;letter-spacing:.02em;
+  color:#FFFFFF;-webkit-text-fill-color:#FFFFFF;
+  text-shadow:0 4px 26px rgba(0,0,0,.55), 0 0 28px rgba(255,255,255,.18)}
+/* Новый подзаголовок под титулом (белый, Inter) */
+.lp-cover-subtext{order:2;max-width:680px;margin:0 auto;font-family:'Inter', var(--font-body);
+  font-weight:400;font-size:clamp(1rem,2vw,1.3rem);line-height:1.5;color:#FFFFFF;
+  text-shadow:0 2px 16px rgba(0,0,0,.6)}
+
+/* Декоративные звёздочки со свечением + лёгкая пульсация масштаба */
+@keyframes starTwinkle{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.45);opacity:1}}
+.lp-star{position:absolute;z-index:3;pointer-events:none;color:var(--gold-100);
+  filter:drop-shadow(0 0 6px rgba(243,228,192,.9)) drop-shadow(0 0 14px rgba(199,161,78,.55));
+  animation:starTwinkle 3s var(--ease-soft) infinite}
+
+/* Пульсация жёлтой кнопки: scale 1 ↔ 1.05, 1.5s ease-in-out */
+@keyframes btnPulseScale{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.btn-pulse-scale{animation:btnPulseScale 1.5s ease-in-out infinite}
+.btn-pulse-scale:hover{animation-play-state:paused}
+/* Рукописный флёрилиш поверх титула (как luxury evening в референсе) */
+.lp-cover-script{position:absolute;left:50%;top:50%;transform:translate(-50%,-46%) rotate(-5deg);
+  font-family:var(--font-script);color:var(--gold-300);font-size:clamp(1.6rem,6vw,4.2rem);
+  line-height:1;white-space:nowrap;text-shadow:0 3px 20px rgba(0,0,0,.6);pointer-events:none}
+.lp-cover-cta{order:3;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:center;margin-top:30px}
+
+/* Появление контента обложки.
+   fill-mode:both + задержка прячет элемент ДО старта и фиксирует финал ПОСЛЕ,
+   но базовая opacity остаётся 1 — поэтому в средах без анимаций (экспорт,
+   html-to-image, reduced-motion) контент всё равно виден. */
+.lp-cover [data-enter]{animation:fadeUp .9s var(--ease-soft) both}
+
+/* Заголовок секции с оверлайном — по центру */
+.lp-head{text-align:center;max-width:780px;margin:0 auto 44px}
+.lp-head .lp-overline{margin-bottom:18px}
+.lp-head h2{margin-bottom:18px}
+.lp-head p{color:var(--neutral-300);font-size:var(--fs-lead);line-height:var(--lh-body)}
+
+/* Сетки карточек */
+.lp-cards-2{display:grid;grid-template-columns:1fr;gap:20px}
+.lp-cards-4{display:grid;grid-template-columns:1fr;gap:20px}
+
+/* Карточка-цитата боли (Блок 2) — крупная типографика, много воздуха */
+.lp-pain{
+  background:var(--ink-700);border:1px solid var(--ink-600);border-radius:var(--radius-lg);
+  padding:30px 28px;display:flex;flex-direction:column;gap:18px;
+  box-shadow:var(--shadow-sm);position:relative;overflow:hidden;
+  transition:transform var(--t-base) var(--ease-soft), box-shadow var(--t-base), border-color var(--t-base);
+}
+.lp-pain:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--gold-700)}
+/* Полупрозрачный «блик зеркала» по диагонали */
+.lp-pain::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 40%,rgba(243,228,192,.05) 50%,transparent 60%);pointer-events:none}
+.lp-pain .q{font-family:var(--font-display);font-style:italic;font-size:var(--fs-h3);color:var(--cream-50);line-height:1.3}
+.lp-pain .mirror-ic{color:var(--gold-500);font-size:1.4rem}
+
+/* Блок 3 — две колонки контраста */
+.lp-contrast{display:grid;grid-template-columns:1fr;gap:20px;align-items:stretch}
+.lp-col{border-radius:var(--radius-lg);padding:30px 28px}
+.lp-col h3{font-family:var(--font-display);margin-bottom:20px;font-size:var(--fs-h3);line-height:var(--lh-heading)}
+.lp-col ul{list-style:none;display:flex;flex-direction:column;gap:16px}
+.lp-col li{display:flex;gap:12px;align-items:flex-start;line-height:1.45}
+.lp-col li i{margin-top:3px;flex:none}
+/* «Как обычно говорят» — приглушённая, отступающая */
+.lp-col-old{background:var(--ink-800);border:1px solid var(--ink-600)}
+.lp-col-old h3{color:var(--neutral-300)}
+.lp-col-old li{color:var(--neutral-300)}
+.lp-col-old li i{color:var(--neutral-500)}
+/* «Как на самом деле» — золотая рамка, подсветка «рабочей» стороны */
+.lp-col-new{
+  background:linear-gradient(var(--ink-700),var(--ink-700)) padding-box, var(--grad-gold) border-box;
+  border:2px solid transparent;box-shadow:var(--shadow-md)
+}
+.lp-col-new h3{color:var(--gold-300)}
+.lp-col-new li{color:var(--cream-50)}
+.lp-col-new li i{color:var(--gold-500)}
+
+/* Блок 4 — таймлайн 8 недель */
+.lp-timeline-center{max-width:560px;margin:0 auto}
+.lp-includes{margin-top:56px}
+.lp-timeline{position:relative;display:flex;flex-direction:column;gap:14px;padding-left:34px;margin-bottom:48px}
+/* Трек линии + анимируемая золотая заливка (scaleY 0→1 на скролле) */
+.lp-timeline::before{content:"";position:absolute;left:10px;top:8px;bottom:8px;width:2px;background:var(--ink-600);border-radius:2px}
+.lp-timeline-fill{position:absolute;left:10px;top:8px;width:2px;height:calc(100% - 16px);background:var(--grad-line);background:linear-gradient(180deg,var(--gold-300),var(--gold-700));border-radius:2px;transform:scaleY(0);transform-origin:top;transition:transform 1.4s var(--ease-soft)}
+.lp-timeline.is-visible .lp-timeline-fill{transform:scaleY(1)}
+.lp-week{position:relative;background:var(--ink-700);border:1px solid var(--ink-600);border-radius:var(--radius-md);padding:18px 22px;transition:border-color var(--t-base),transform var(--t-base) var(--ease-soft),box-shadow var(--t-base)}
+.lp-week:hover{border-color:var(--gold-500);transform:translateX(4px);box-shadow:var(--shadow-md)}
+.lp-week .dot{position:absolute;left:-29px;top:22px;width:14px;height:14px;border-radius:50%;background:var(--ink-800);border:2px solid var(--gold-500);transition:background var(--t-base),box-shadow var(--t-base)}
+.lp-week:hover .dot{background:var(--gold-500);box-shadow:var(--shadow-gold)}
+.lp-week .wk{font-family:var(--font-body);font-weight:700;font-size:var(--fs-tiny);text-transform:uppercase;letter-spacing:.16em;color:var(--gold-500);margin-bottom:6px}
+.lp-week .res{font-family:var(--font-display);font-size:var(--fs-h4);color:var(--cream-50);line-height:1.25}
+
+/* Форматы — сетка иконок */
+.lp-formats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.lp-format{display:flex;flex-direction:column;gap:0;align-items:flex-start;background:var(--ink-700);border:1px solid var(--ink-600);border-radius:var(--radius-md);padding:22px;transition:transform var(--t-base) var(--ease-soft),border-color var(--t-base)}
+.lp-format:hover{transform:translateY(-4px);border-color:var(--gold-700)}
+.lp-format i{font-size:1.5rem;color:var(--gold-500)}
+.lp-format b{font-family:var(--font-display);font-size:var(--fs-h4);color:var(--cream-50);font-weight:600;line-height:1.15;margin-top:12px;margin-bottom:8px}
+.lp-format span{color:var(--neutral-300);font-size:var(--fs-small)}
+
+/* Блок 5 — об авторе (карточка-визитка в стиле референса) */
+.lp-author-card{position:relative;overflow:hidden;border-radius:var(--radius-md);
+  padding:clamp(34px,5vw,68px) clamp(26px,5vw,64px) clamp(54px,5vw,72px);
+  background:linear-gradient(135deg,var(--wine-500) 0%,var(--wine-700) 55%,var(--wine-900) 100%);
+  box-shadow:var(--shadow-lg)}
+/* лёгкая зернистость поверх фона */
+.lp-author-card::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E")}
+.lp-author-card>*{position:relative;z-index:1}
+/* Имя + роль в скобках */
+.lp-author-name{font-family:'Ekaterina Velikaya One', var(--font-display);font-weight:400;font-style:normal;
+  font-size:clamp(2.4rem,6.5vw,5rem);line-height:1.05;letter-spacing:.02em;color:var(--cream-50);
+  display:flex;align-items:baseline;flex-wrap:wrap;gap:.18em .4em;margin-bottom:clamp(30px,4vw,52px)}
+.lp-author-name .paren{font-style:normal;font-weight:400;font-size:1.15em;color:rgba(244,235,217,.7)}
+.lp-author-name .role{font-family:var(--font-body);font-style:normal;font-weight:500;
+  font-size:clamp(.7rem,1.4vw,.95rem);letter-spacing:.24em;text-transform:uppercase;color:var(--gold-300);
+  align-self:center}
+/* Сетка: полароиды + досье */
+.lp-author-grid{display:grid;grid-template-columns:1fr;gap:48px;align-items:center}
+/* Полароиды */
+.lp-polaroids{position:relative;height:clamp(330px,46vw,430px);max-width:440px;margin:0 auto}
+.polaroid{position:absolute;width:clamp(150px,42%,215px);background:#f3efe6;
+  padding:11px 11px 40px;box-shadow:0 18px 40px rgba(20,8,10,.5);border-radius:2px}
+.polaroid .ph{aspect-ratio:3/4;overflow:hidden;background:var(--ink-700)}
+.polaroid .ph img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.04)}
+.polaroid .cap{position:absolute;left:0;right:0;bottom:12px;text-align:center;
+  font-family:var(--font-script);font-size:1.2rem;color:#6b615d}
+.polaroid.p1{left:2%;top:24px;transform:rotate(-7deg);z-index:1}
+.polaroid.p2{right:2%;bottom:0;transform:rotate(5deg);z-index:2}
+/* Досье: нумерованные пункты */
+.lp-creds{display:flex;flex-direction:column;gap:22px}
+.lp-cred{line-height:1.55;color:rgba(244,235,217,.82);font-size:var(--fs-body)}
+.lp-cred b{color:var(--cream-50);font-weight:700}
+.lp-cred .n{color:var(--gold-300);font-weight:700;margin-right:.3em}
+.lp-author-card .corner-note{position:absolute;z-index:1;font-family:var(--font-body);
+  font-size:var(--fs-tiny);letter-spacing:.22em;text-transform:uppercase;color:rgba(244,235,217,.55)}
+.lp-author-card .corner-note.bl{left:clamp(20px,4vw,40px);bottom:22px}
+.lp-author-card .corner-note.br{right:clamp(20px,4vw,40px);bottom:22px}
+@media(min-width:900px){
+  .lp-author-grid{grid-template-columns:.85fr 1.15fr;gap:56px}
+  .lp-polaroids{margin:0}
+}
+
+/* Финальная форма записи */
+/* Тарифы — минималистичный «элитный» стиль */
+.lp-tiers{display:grid;grid-template-columns:1fr;gap:22px;align-items:stretch}
+.lp-tier{position:relative;display:flex;flex-direction:column;
+  background:var(--ink-800);border:1px solid var(--ink-600);border-radius:var(--radius-md);
+  padding:38px 32px;transition:transform var(--t-base) var(--ease-soft),border-color var(--t-base),box-shadow var(--t-base)}
+.lp-tier:hover{transform:translateY(-6px);border-color:var(--gold-700);box-shadow:var(--shadow-lg)}
+.lp-tier .label{font-family:var(--font-body);font-weight:600;font-size:var(--fs-tiny);
+  letter-spacing:.26em;text-transform:uppercase;color:var(--gold-500)}
+.lp-tier .name{font-family:var(--font-display);font-style:italic;font-weight:500;
+  font-size:var(--fs-h3);color:var(--cream-50);margin:6px 0 22px}
+.lp-tier .price{font-family:var(--font-display);font-weight:800;font-size:2.4rem;color:var(--cream-50);line-height:1;
+  display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.lp-tier .price small{font-family:var(--font-body);font-weight:500;font-size:.85rem;color:var(--neutral-300)}
+.lp-tier .rule{height:1px;background:linear-gradient(90deg,var(--gold-700),transparent);margin:26px 0}
+.lp-tier ul{list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:30px}
+.lp-tier li{display:flex;gap:12px;align-items:flex-start;color:var(--neutral-100);font-size:var(--fs-small);line-height:1.45}
+.lp-tier li i{color:var(--gold-500);margin-top:3px;font-size:.8rem;flex:none}
+.lp-tier .tier-cta{margin-top:auto;justify-content:center;width:100%}
+/* Рекомендуемый тариф — золотая рамка */
+.lp-tier.featured{
+  background:linear-gradient(var(--ink-700),var(--ink-700)) padding-box, var(--grad-gold) border-box;
+  border:1.5px solid transparent;box-shadow:var(--shadow-md)}
+.lp-tier.featured .name{color:var(--gold-300)}
+.lp-tier .tag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  background:var(--grad-gold);color:var(--wine-900);white-space:nowrap;
+  font-family:var(--font-body);font-weight:700;font-size:var(--fs-tiny);letter-spacing:.14em;text-transform:uppercase;
+  padding:6px 18px;border-radius:var(--radius-pill);box-shadow:var(--shadow-sm)}
+@media(min-width:900px){
+  .lp-tiers{grid-template-columns:repeat(3,1fr);gap:24px}
+  .lp-tier.featured{transform:translateY(-12px)}
+  .lp-tier.featured:hover{transform:translateY(-18px)}
+}
+.lp-booking{display:grid;grid-template-columns:1fr;gap:32px;align-items:center}
+.lp-form-card{
+  background:var(--glass-bg);-webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
+  border:var(--glass-border);box-shadow:var(--shadow-md), var(--shadow-inset);
+  border-radius:var(--radius-lg);padding:32px 28px;
+}
+.lp-form-card h3{font-family:var(--font-display);font-size:var(--fs-h3);color:var(--cream-50);margin-bottom:8px}
+.lp-form-card .sub{color:var(--neutral-300);font-size:var(--fs-small);margin-bottom:24px}
+
+/* Футер */
+.lp-footer{border-top:1px solid var(--ink-600);text-align:center;padding:56px 0 64px}
+.lp-footer .script{font-family:var(--font-script);font-size:var(--fs-h2);color:var(--gold-300)}
+.lp-footer p{color:var(--neutral-300);margin-top:8px;font-size:var(--fs-small)}
+
+/* ===== Reveal на скролле (Intersection Observer добавляет .is-visible) ===== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease-soft),transform .7s var(--ease-soft)}
+.reveal.is-visible{opacity:1;transform:none}
+/* Поочерёдное появление: задержка через --d, проставляется в разметке */
+.reveal{transition-delay:calc(var(--d,0)*.12s)}
+
+/* ============================================================
+   МОБИЛЬНАЯ ОБЛОЖКА ≤ 640px — фото адаптируется без обрезки героини,
+   весь текст и кнопки строго по центру.
+   ============================================================ */
+@media(max-width:640px){
+  .lp-cover{min-height:calc(100svh - 56px);min-height:calc(100dvh - 56px)}
+  /* Фото: убираем лишний зум (на мобиле он сильнее обрезает кадр),
+     героиня по центру и видна целиком */
+  .lp-cover-media img{transform:scale(1)!important;object-position:50% 26%}
+  /* Рамка-инсет: компактнее поля на узком экране */
+  .lp-cover-frame{margin:10px;padding:26px 16px}
+  /* Нижний блок — строго по центру, без выпирания за экран */
+  .lp-cover-bottom{width:100%;margin:0 auto 6px!important}
+  .lp-cover-title{margin:0 0 4px!important;text-align:center}
+  /* Сбрасываем случайный margin:120px из инлайна — он ломал центровку
+     и заставлял заголовок вылезать за экран */
+  .lp-cover-bigword{margin:0 auto 80px!important;white-space:normal;line-height:1.05;
+    font-size:clamp(2.8rem,15vw,4.6rem);max-width:100%}
+  .lp-cover-top{font-size:14px!important;line-height:1.7!important}
+  .lp-cover-subtext{font-size:1.02rem;padding:0 6px}
+  /* CTA — на всю ширину контента, по центру */
+  .lp-cover-cta{margin-top:26px!important;width:100%;flex-direction:column}
+  .lp-cover-cta .btn{width:100%;max-width:340px;justify-content:center}
+
+  /* Блок «Об авторе» — крупнее имя, кнопка по центру */
+  .lp-author-name{font-size:60px}
+  .lp-creds .btn{align-self:center!important;margin-bottom:50px}
+
+  /* \u0425\u0435\u0434\u0435\u0440 \u2014 \u043b\u043e\u0433\u043e\u0442\u0438\u043f \u0438 \u043a\u043d\u043e\u043f\u043a\u0430 \u043f\u043e \u043a\u0440\u0430\u044f\u043c, \u043d\u043e \u0432\u044b\u0440\u043e\u0432\u043d\u0435\u043d\u044b \u043f\u043e \u0446\u0435\u043d\u0442\u0440\u0443 \u043e\u0442\u043d\u043e\u0441\u0438\u0442\u0435\u043b\u044c\u043d\u043e \u0434\u0440\u0443\u0433 \u0434\u0440\u0443\u0433\u0430 */
+  .lp-nav-inner{justify-content:space-between;align-items:center}
+
+  /* \u00ab\u041d\u0435 \u0442\u043e\u043c\u0443\u00bb \u2014 \u043d\u0430 \u043e\u0434\u043d\u043e\u0439 \u0441\u0442\u0440\u043e\u043a\u0435 \u0441 \u00ab\u0443\u0447\u0438\u043b\u0438\u00bb */
+  .lp-br-netomu{display:none}
+  .lp-uchili{white-space:nowrap}
+}
+
+/* ============================================================
+   ПЛАНШЕТ ≥ 1024px
+   ============================================================ */
+@media(min-width:1024px){
+  .lp-section{padding:80px 0}            /* отступы секций 80px на десктопе (ТЗ) */
+  .lp-nav-links{display:flex}
+  .lp-cards-2{grid-template-columns:1fr 1fr}
+  .lp-cards-4{grid-template-columns:1fr 1fr}
+  .lp-contrast{grid-template-columns:1fr 1fr}
+  .lp-timeline-wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:48px;align-items:start}
+  .lp-formats{grid-template-columns:1fr 1fr}
+  .lp-author{grid-template-columns:.85fr 1.15fr;gap:56px}
+  .lp-booking{grid-template-columns:1fr 1fr}
+}
+
+/* ============================================================
+   ШИРОКИЙ ДЕСКТОП ≥ 1440px — больше воздуха, 4 колонки боли
+   ============================================================ */
+@media(min-width:1440px){
+  .lp-cards-4{grid-template-columns:repeat(4,1fr)}
+  .lp-formats{grid-template-columns:repeat(2,1fr)}
+}
+
+/* Межбуквенное расстояние = 0 по всему лендингу (перебивает инлайны и трекинг-токены) */
+*{letter-spacing:0 !important}
+</style>
+</head>
+<body>
+
+<!-- ============ ШАПКА / НАВИГАЦИЯ ============ -->
+<nav class="lp-nav" data-screen-label="Навигация">
+  <div class="lp-nav-inner">
+    <a class="lp-brand" href="#top">Алина <span>Юркина</span></a>
+    <div class="lp-nav-links">
+      <a href="#pain">Это про тебя?</a>
+      <a href="#program">Программа</a>
+      <a href="#author">Об авторе</a>
+      <a href="#booking">Запись</a>
+    </div>
+    <a href="#booking" class="btn btn-outline" style="padding:9px 20px;font-size:var(--fs-small)">Хочу к себе</a>
+  </div>
+</nav>
+
+<!-- ============ БЛОК 1. ОБЛОЖКА (CINEMATIC cover) ============ -->
+<header class="lp-cover" id="top" data-screen-label="Обложка">
+  <!-- Фото на весь экран + затемнение -->
+  <div class="lp-cover-media">
+    <img id="hero-img" src="assets/hero-2.jpg"
+         alt="Женщина в короне — внутренняя сила и достоинство">
+  </div>
+  <div class="lp-cover-veil"></div>
+
+  <!-- Тонкая золотая рамка с уголками и бликами -->
+  <div class="lp-cover-frame">
+    <span class="lp-corner tl"></span>
+    <span class="lp-corner tr"></span>
+    <span class="lp-corner bl"></span>
+    <span class="lp-corner br"></span>
+    <span class="lp-spark" style="top:14%;left:8%">•</span>
+    <span class="lp-spark" style="top:9%;right:11%">•</span>
+    <span class="lp-spark" style="bottom:30%;left:6%">•</span>
+    <span class="lp-spark" style="bottom:34%;right:7%">•</span>
+
+    <!-- Декоративные точки со свечением — по углам Hero -->
+    <i class="fa-solid fa-circle lp-star" style="top:11%;left:13%;font-size:7px;animation-delay:0s"></i>
+    <i class="fa-solid fa-circle lp-star" style="top:18%;right:9%;font-size:11px;animation-delay:.6s"></i>
+    <i class="fa-solid fa-circle lp-star" style="top:7%;right:22%;font-size:5px;animation-delay:1.2s"></i>
+    <i class="fa-solid fa-circle lp-star" style="bottom:23%;left:9%;font-size:9px;animation-delay:.9s"></i>
+    <i class="fa-solid fa-circle lp-star" style="bottom:15%;left:20%;font-size:5px;animation-delay:1.6s"></i>
+    <i class="fa-solid fa-circle lp-star" style="bottom:27%;right:12%;font-size:8px;animation-delay:.3s"></i>
+
+    <!-- Верх: «8 недель · Поток …» (как Location/Date в референсе) -->
+    <div class="lp-cover-top" data-enter style="animation-delay: .1s; line-height: 2; letter-spacing: 1px; font-size: 20px">
+      8 недель<br><b style="letter-spacing: 1px">Поток «Лето 2026»</b>
+    </div>
+
+    <!-- Низ: гигантский титул → подзаголовок → CTA -->
+    <div class="lp-cover-bottom" style="margin: 0px 0px 1px">
+      <!-- Декоративный титул -->
+      <div class="lp-cover-title">
+        <h1 class="lp-cover-bigword" data-enter style="animation-delay: .4s; margin: 120px">Выбери себя</h1>
+      </div>
+      <!-- Новый подзаголовок под титулом -->
+      <p class="lp-cover-subtext" data-enter style="animation-delay:.65s">Перестань извиняться за то, что ты есть — и увидь, как меняется отражение в зеркале</p>
+      <div class="lp-cover-cta" data-enter style="animation-delay:.95s">
+        <a href="#booking" class="btn btn-secondary btn-pulse-scale">Выбрать себя</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ БЛОК 2. ЗЕРКАЛО БОЛИ ============ -->
+<section class="lp-section" id="pain" data-screen-label="Зеркало боли">
+  <div class="lp-container">
+    <div class="lp-head reveal">
+      <h2 class="t-h2">Ты многого добилась.<br>Так почему внутри — пусто?</h2>
+      <p>Если хотя бы одно откликается — ты по адресу.</p>
+    </div>
+
+    <div class="lp-cards-4">
+      <!-- 4 карточки-цитаты от первого лица. Поочерёдное появление через --d -->
+      <div class="lp-pain reveal" style="--d:0">
+        <i class="fa-solid fa-face-frown mirror-ic"></i>
+        <p class="q">«Смотрю в зеркало — и вижу только недостатки»</p>
+      </div>
+      <div class="lp-pain reveal" style="--d:1">
+        <i class="fa-solid fa-hand-holding-heart mirror-ic"></i>
+        <p class="q">«Живу ради других,
+на себя сил не остаётся»</p>
+      </div>
+      <div class="lp-pain reveal" style="--d:2">
+        <i class="fa-solid fa-comment-dots mirror-ic"></i>
+        <p class="q">«Извиняюсь, даже когда не виновата»</p>
+      </div>
+      <div class="lp-pain reveal" style="--d:3">
+        <i class="fa-solid fa-gem mirror-ic"></i>
+        <p class="q">«Кажется, меня полюбят, только
+если буду идеальной»</p>
+      </div>
+    </div>
+
+    </div>
+
+    
+  </div>
+</section>
+
+<!-- ============ БЛОК 3. СДВИГ ПАРАДИГМЫ ============ -->
+<section class="lp-section" id="shift" data-screen-label="Сдвиг парадигмы">
+  <div class="lp-container">
+    <div class="lp-head reveal">
+      <h2 class="t-h2">Дело не в том, что ты мало <span style="color:var(--gold-300)">стараешься</span><br>Дело в том, что тебя <span class="lp-uchili">учили<br class="lp-br-netomu"> <span style="color:var(--gold-300)">не тому</span></span></h2>
+      <p>«Просто полюби себя» — это не инструкция. Это требование, под которым ты снова чувствуешь себя виноватой. Здесь будет иначе — по шагам.</p>
+    </div>
+
+    <div class="lp-contrast">
+      <!-- Левая колонка: абстрактные лозунги (приглушённая) -->
+      <div class="lp-col lp-col-old reveal" style="--d:0">
+        <h3>Как обычно говорят</h3>
+        <ul>
+          <li><i class="fa-regular fa-circle"></i><span>«Просто полюби себя»</span></li>
+          <li><i class="fa-regular fa-circle"></i><span>«Будь увереннее»</span></li>
+          <li><i class="fa-regular fa-circle"></i><span>«Перестань себя накручивать»</span></li>
+          <li><i class="fa-regular fa-circle"></i><span>«Думай позитивно — и всё пройдёт»</span></li>
+        </ul>
+      </div>
+      <!-- Правая колонка: конкретные навыки (золотая рамка, подсветка) -->
+      <div class="lp-col lp-col-new reveal" style="--d:1">
+        <h3>Как это работает здесь</h3>
+        <ul>
+          <li><i class="fa-solid fa-check"></i><span>Замечать момент самокритики — и спокойно его останавливать</span></li>
+          <li><i class="fa-solid fa-check"></i><span>Говорить «нет» без оправданий и чувства вины</span></li>
+          <li><i class="fa-solid fa-check"></i><span>Ухаживать за собой без ненависти к телу</span></li>
+          <li><i class="fa-solid fa-check"></i><span>Опираться на свой выбор, а не на чужое одобрение</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:40px" class="reveal">
+      <a href="#program" class="btn btn-outline">Показать, как это работает</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ БЛОК 4. ПРОГРАММА ТРАНСФОРМАЦИИ ============ -->
+<section class="lp-section" id="program" data-screen-label="Программа 8 недель">
+  <div class="lp-container">
+    <div class="lp-head reveal">
+      <h2 class="t-h2">От самокритики —<br><span style="color:var(--gold-300)">к выбору себя</span></h2>
+      <p>Каждую неделю — один навык, который остаётся с тобой навсегда.</p>
+    </div>
+
+    <!-- Таймлайн по центру блока -->
+    <div class="lp-timeline-center">
+      <div class="lp-timeline reveal" id="timeline">
+        <div class="lp-timeline-fill"></div>
+        <div class="lp-week"><span class="dot"></span><div class="wk">Неделя 01</div><div class="res">Учусь замечать себя</div></div>
+        <div class="lp-week"><span class="dot"></span><div class="wk">Неделя 02</div><div class="res">Отделяю свой голос от чужих ожиданий</div></div>
+        <div class="lp-week"><span class="dot"></span><div class="wk">Неделя 03</div><div class="res">Говорю «нет» без чувства вины</div></div>
+        <div class="lp-week"><span class="dot"></span><div class="wk">Неделя 04</div><div class="res">Перестаю сравнивать себя с другими</div></div>
+        <div class="lp-week"><span class="dot"></span><div class="wk">Неделя 05</div><div class="res">Смотрю в зеркало без войны</div></div>
+        <div class="lp-week"><span class="dot"></span><div class="wk">Неделя 06</div><div class="res">Забочусь о теле без ненависти к нему</div></div>
+        <div class="lp-week"><span class="dot"></span><div class="wk">Неделя 07</div><div class="res">Позволяю себе хотеть и просить</div></div>
+        <div class="lp-week"><span class="dot"></span><div class="wk">Неделя 08</div><div class="res">Выбираю себя — спокойно и каждый день</div></div>
+      </div>
+    </div>
+
+    <!-- Что входит в программу — ниже, во всю ширину, 2 колонки -->
+    <div class="reveal lp-includes" style="--d:1">
+      <h3 class="t-h3" style="margin-bottom:24px;color:var(--cream-50);text-align:center">Что входит</h3>
+      <div class="lp-formats">
+        <div class="lp-format"><i class="fa-solid fa-play"></i><b>Ежедневные видеоуроки</b><span>Короткие, по делу — смотри в своём темпе</span></div>
+        <div class="lp-format"><i class="fa-solid fa-users"></i><b>Живые встречи</b><span>Раз в неделю с Алиной в прямом эфире</span></div>
+        <div class="lp-format"><i class="fa-solid fa-comments"></i><b>Чат поддержки</b><span>Бережное сообщество и ответы на вопросы</span></div>
+        <div class="lp-format"><i class="fa-solid fa-book-open"></i><b>Рабочая тетрадь</b><span>Практики, которые остаются с тобой</span></div>
+      </div>
+      <div style="text-align:center">
+        <a href="#booking" class="btn btn-secondary btn-pulse-scale" style="margin-top:28px">Забронировать место в потоке</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ БЛОК 5. ОБ АВТОРЕ ============ -->
+<section class="lp-section" id="author" data-screen-label="Об авторе">
+  <div class="lp-container">
+    <div class="lp-author-card reveal">
+      <h2 class="lp-author-name" style="margin: 0px 0px 100px">Алина Юркина</h2>
+
+      <div class="lp-author-grid">
+        <!-- Полароидные фото -->
+        <div class="lp-polaroids">
+          <div class="polaroid p1">
+            <div class="ph"><img src="assets/hero-new.jpg" alt="Портрет Алины Юркиной"></div>
+            <span class="cap">я настоящая</span>
+          </div>
+          <div class="polaroid p2">
+            <div class="ph"><img src="assets/author-2.jpg" alt="Алина в работе"></div>
+            <span class="cap">на пути</span>
+          </div>
+        </div>
+
+        <!-- Досье -->
+        <div class="lp-creds">
+          <p class="lp-cred"><b><span class="n">/01</span> Опыт:</b> более 10 лет в практике и терапии. Психолог, ведущая женских групп — путь со мной прошли более 1200 женщин.</p>
+          <p class="lp-cred"><b><span class="n">/02</span> Миссия:</b> помочь женщине перестать жить ради чужого одобрения и вернуться к настоящей себе — без вины и войны с собой.</p>
+          <p class="lp-cred"><b><span class="n">/03</span> Метод:</b> конкретные навыки вместо лозунгов — по одному в неделю, с бережным сопровождением, пока они становятся твоими.</p>
+          <a href="#booking" class="btn btn-secondary btn-pulse-scale" style="margin-top:10px;align-self:flex-start">Пойти этим путём с Алиной</a>
+        </div>
+      </div>
+
+      <span class="corner-note bl">возвращение к себе</span>
+      <span class="corner-note br">об авторе</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ФИНАЛЬНЫЙ БЛОК. ЗАПИСЬ ============ -->
+<section class="lp-section" id="booking" data-screen-label="Запись">
+  <div class="lp-container">
+    <div class="lp-head reveal">
+      <h2 class="t-h2">Займи место в потоке</h2>
+      <p>Старт ближайшего потока — 1 сентября. Выбери формат, который тебе по душе.</p>
+    </div>
+
+    <div class="lp-tiers">
+
+      <!-- Тариф 1 -->
+      <div class="lp-tier reveal" style="--d:0">
+        <div class="label">Формат 01</div>
+        <div class="name">Сама</div>
+        <div class="price">18 900 ₽<small>/ 8 недель</small></div>
+        <div class="rule"></div>
+        <ul>
+          <li><i class="fa-solid fa-check"></i><span>Видеоуроки всех 8 недель</span></li>
+          <li><i class="fa-solid fa-check"></i><span>Рабочая тетрадь практик</span></li>
+          <li><i class="fa-solid fa-check"></i><span>Доступ к материалам навсегда</span></li>
+        </ul>
+        <a href="#booking" class="btn btn-outline tier-cta">Выбрать формат</a>
+      </div>
+
+      <!-- Тариф 2 — рекомендуемый -->
+      <div class="lp-tier featured reveal" style="--d:1">
+        <span class="tag">Выбор большинства</span>
+        <div class="label">Формат 02</div>
+        <div class="name">Вместе</div>
+        <div class="price">38 900 ₽<small>/ 8 недель</small></div>
+        <div class="rule"></div>
+        <ul>
+          <li><i class="fa-solid fa-check"></i><span>Всё из формата «Сама»</span></li>
+          <li><i class="fa-solid fa-check"></i><span>Еженедельные живые встречи с Алиной</span></li>
+          <li><i class="fa-solid fa-check"></i><span>Чат с поддержкой и сообществом</span></li>
+          <li><i class="fa-solid fa-check"></i><span>Обратная связь на пути</span></li>
+        </ul>
+        <a href="#booking" class="btn btn-secondary btn-pulse-scale tier-cta">Выбрать формат</a>
+      </div>
+
+      <!-- Тариф 3 -->
+      <div class="lp-tier reveal" style="--d:2">
+        <div class="label">Формат 03</div>
+        <div class="name">Лично</div>
+        <div class="price">79 900 ₽<small>/ 8 недель</small></div>
+        <div class="rule"></div>
+        <ul>
+          <li><i class="fa-solid fa-check"></i><span>Всё из формата «Вместе»</span></li>
+          <li><i class="fa-solid fa-check"></i><span>4 личные сессии 1:1 с Алиной</span></li>
+          <li><i class="fa-solid fa-check"></i><span>Индивидуальный план пути</span></li>
+        </ul>
+        <a href="#booking" class="btn btn-outline tier-cta">Выбрать формат</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ ФУТЕР ============ -->
+<footer class="lp-footer">
+  <div class="lp-container">
+    <div class="line-ornament"><span>возвращение к себе</span></div>
+    <p class="script" style="margin-top:28px">Алина Юркина</p>
+    <p>© 2026 · Курс «Возвращение к себе» · Все права защищены</p>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   1. REVEAL НА СКРОЛЛЕ — Intersection Observer
+   Добавляет .is-visible элементам .reveal и контейнеру таймлайна,
+   когда они попадают в зону видимости. Однократно (unobserve).
+   ============================================================ */
+(function(){
+  const els = document.querySelectorAll('.reveal, #timeline');
+  if(!('IntersectionObserver' in window)){
+    // Фолбэк: если IO не поддерживается — просто показываем всё
+    els.forEach(el => el.classList.add('is-visible'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target); // анимируем один раз
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+  els.forEach(el => io.observe(el));
+})();
+
+/* ============================================================
+   2. ПАРАЛЛАКС ФОТО В ГЕРОЕ
+   Лёгкий сдвиг фото по Y относительно прокрутки. Считаем в rAF,
+   чтобы не дёргать layout на каждом событии scroll.
+   ============================================================ */
+(function(){
+  const img = document.getElementById('hero-img');
+  if(!img) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(reduce) return;
+  // На мобиле параллакс с зумом отключаем — фото должно адаптироваться без обрезки
+  const isMobile = window.matchMedia('(max-width:640px)').matches;
+  if(isMobile) return;
+  let ticking = false;
+  function update(){
+    const y = window.scrollY;
+    // Сдвигаем максимум на ~40px — деликатно
+    const shift = Math.min(y * 0.08, 40);
+    img.style.transform = 'translate3d(0,' + shift + 'px,0) scale(1.14)';
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if(!ticking){ requestAnimationFrame(update); ticking = true; }
+  }, { passive:true });
+  update();
+})();
+
+/* ============================================================
+   3. ОБРАБОТКА ФОРМЫ ЗАПИСИ
+   Собираем имя + email, простая валидация, затем alert.
+   ============================================================ */
+(function(){
+  const form = document.getElementById('booking-form');
+  if(!form) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    // Минимальная валидация email
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if(!name || !emailOk){
+      alert('Пожалуйста, укажи имя и корректный e-mail.');
+      return;
+    }
+    alert('Спасибо! Мы свяжемся');
+    form.reset();
+  });
+})();
+</script>
+
+</body>
+</html>
